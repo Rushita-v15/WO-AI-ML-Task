@@ -127,4 +127,27 @@ To ensure robust model selection, I defined a set of key evaluation metrics span
   - Open-source and MIT licensed  
   - Efficient and chat-optimized  
   - Strong performance on assistant-style tasks
+    
+## ✂️ Chunking Strategy
 
+### 🛠 Implementation
+
+The chunking logic is implemented using LangChain's `RecursiveCharacterTextSplitter`
+
+### ✅ Justification
+
+- **Recursive Splitting**  
+  Ensures chunks break cleanly at semantic boundaries (e.g., paragraphs, sentences), improving the quality of embeddings.
+
+- **Chunk Size: `400`**  
+  - Provides enough context for meaningful embeddings  
+  - Avoids exceeding token limits of smaller models like `all-MiniLM-L6-v2`
+
+- **Chunk Overlap: `50`**  
+  Maintains context continuity across chunks, reducing information loss.
+
+- **Metadata Attachment**  
+  Each chunk includes metadata such as:
+  - Page number (`"page"`)
+  - Document source (`"source"`)  
+  This enables traceability during document retrieval and evaluation.
