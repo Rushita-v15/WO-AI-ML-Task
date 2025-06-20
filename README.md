@@ -68,7 +68,7 @@ This script, [test_api.py](test_api.py), provides a command-line interface to in
 ## Example
 
 ```
-📁 Enter the path to the document: "C:\Users\LENOVO\Downloads\Inputs\Inputs\NIFTY 50 Annual Report.docx"
+📁 Enter the path to the document: C:\Users\LENOVO\Downloads\Inputs\Inputs\NIFTY 50 Annual Report.docx
 📄 Uploading document for embedding...
 ✅ Embedding Response: {
   "status": "success",
@@ -87,3 +87,44 @@ This script, [test_api.py](test_api.py), provides a command-line interface to in
   "conversation_id": "..."
 }
 ```
+
+## 📊 Evaluation Methodology
+
+To ensure robust model selection, I defined a set of key evaluation metrics spanning the full RAG (Retrieval-Augmented Generation) pipeline. These include:
+
+![Metric for Evaluation](./Metric.png)
+
+- **Content Quality**:  
+  - *Chunk Quality*: Chunks must accurately represent the source content.  
+  - *Chunk Size*: Optimized for embedding and retrieval.  
+  - *Metadata Accuracy*: Correct attribution to source document and page.
+
+- **Retrieval Quality**:  
+  - *Relevance of Retrieved Documents*: Degree to which documents align with the query.  
+  - *Coverage*: Completeness of information retrieval.  
+  - *Context Noise*: Avoidance of irrelevant or misleading documents.
+
+- **Generation Quality**:  
+  - *Factual Accuracy*: Response correctness.  
+  - *Relevance to Query*: Response specificity.  
+  - *Hallucination Rate*: Frequency of unsupported/generated content.
+
+- **End-to-End Latency**:  
+  - Total response time from query input to output.
+
+---
+
+## 🤖 Model Selection Justification
+
+### ✅ Current Selection:
+
+- **Embedding Model**: `all-MiniLM-L6-v2`  
+  - Lightweight and resource-efficient  
+  - Strong semantic embedding capabilities  
+  - Ideal for local deployment
+
+- **LLM**: `HuggingFaceH4/zephyr-7b-beta`  
+  - Open-source and MIT licensed  
+  - Efficient and chat-optimized  
+  - Strong performance on assistant-style tasks
+
